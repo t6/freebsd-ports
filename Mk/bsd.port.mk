@@ -2676,7 +2676,7 @@ CONFIGURE_ARGS+=	--host=${CROSS_HOST}
 CONFIGURE_ENV+=		CONFIG_SITE=${CONFIG_SITE} lt_cv_sys_max_cmd_len=${CONFIGURE_MAX_CMD_LEN}
 HAS_CONFIGURE=		yes
 
-.if !${CONFIGURE_ARGS:M--disable-option-checking} && !${CONFIGURE_ARGS:M--enable-option-checking} && !${CONFIGURE_ARGS:M--enable-option-checking=*}
+.if defined(DEVELOPER) && !${CONFIGURE_ARGS:M--disable-option-checking} && !${CONFIGURE_ARGS:M--enable-option-checking} && !${CONFIGURE_ARGS:M--enable-option-checking=*}
 # Make option checking warnings an error if possible.  We can only
 # do this if AC_CONFIG_SUBDIRS is not used since configure args are
 # inherited by subpackages and there would be false positives.
