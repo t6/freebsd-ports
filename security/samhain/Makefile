@@ -21,7 +21,8 @@ SHEBANG_FILES=		scripts/samhainadmin-gpg.pl.in \
 			scripts/samhainadmin-sig.pl.in
 
 GNU_CONFIGURE=	yes
-CONFIGURE_ARGS=	--localstatedir=/var \
+CONFIGURE_ARGS=	--enable-option-checking \
+		--localstatedir=/var \
 		--with-logserver=true \
 		--with-altlogserver=true \
 		--with-timeserver=true \
