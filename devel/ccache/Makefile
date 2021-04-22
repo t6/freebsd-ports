@@ -37,13 +37,11 @@ USES=		compiler
 MEMCACHED_EXTRA_PATCHES=	\
 				${FILESDIR}/extra-patch-memcached-configure.ac \
 				${FILESDIR}/extra-patch-memcached-Makefile.in
-MEMCACHED_CONFIGURE_ENABLE=	memcached
+MEMCACHED_CONFIGURE_ON=		--enable-memcached
 MEMCACHED_USES=			autoreconf gmake pkgconfig
 MEMCACHED_LIB_DEPENDS=		libmemcached.so:databases/libmemcached
 MEMCACHED_LDFLAGS=		-L${LOCALBASE}/lib
 MEMCACHED_CFLAGS=		-I${LOCALBASE}/include
-
-STATIC_CONFIGURE_ENABLE=	static
 
 .if empty(OPTIONS_SLAVE:MMEMCACHED)
 EXTRA_PATCHES+=	${FILESDIR}/extra-patch-Makefile.in
