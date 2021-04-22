@@ -157,7 +157,6 @@ CFLAGS+=	-Werror=uninitialized
 libtool_ARGS?=	# empty
 .include "${USESDIR}/libtool.mk"
 USE_LDCONFIG=	yes
-CONFIGURE_ARGS+=--enable-malloc0returnsnull
 .    endif
 
 .  elif ${_XORG_CAT} == proto

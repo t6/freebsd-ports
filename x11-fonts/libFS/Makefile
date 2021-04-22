@@ -12,6 +12,7 @@ USES=		cpe xorg xorg-cat:lib
 USE_XORG=	xorgproto xtrans
 CPE_VENDOR=	x
 CPE_PRODUCT=	libfs
+CONFIGURE_ARGS=	--enable-malloc0returnsnull
 
 INSTALL_TARGET=	install-strip
 

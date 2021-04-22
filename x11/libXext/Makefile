@@ -16,7 +16,9 @@ USE_XORG=	x11 xau xorgproto
 CPE_VENDOR=	x
 CPE_PRODUCT=	libxext
 
-CONFIGURE_ARGS+=--disable-specs --without-xmlto
+CONFIGURE_ARGS=	--disable-specs \
+		--enable-malloc0returnsnull \
+		--without-xmlto
 INSTALL_TARGET=	install-strip
 
 .include <bsd.port.mk>

@@ -16,11 +16,12 @@ INSTALL_TARGET=	install-strip
 CPE_PRODUCT=	libxi
 CPE_VENDOR=	x
 
-CONFIGURE_ARGS+=--disable-docs \
+CONFIGURE_ARGS=	--disable-docs \
 		--disable-specs \
-		--without-xmlto \
-		--without-fop \
+		--enable-malloc0returnsnull \
 		--without-asciidoc \
+		--without-fop \
+		--without-xmlto \
 		--without-xsltproc
 
 .include <bsd.port.mk>

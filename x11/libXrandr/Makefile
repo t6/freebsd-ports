@@ -14,6 +14,7 @@ USES=		cpe xorg xorg-cat:lib
 USE_XORG=	x11 xext xrender xorgproto
 CPE_VENDOR=	x
 CPE_PRODUCT=	libxrandr
+CONFIGURE_ARGS=	--enable-malloc0returnsnull
 
 INSTALL_TARGET=	install-strip
 

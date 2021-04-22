@@ -15,5 +15,6 @@ USES=		cpe xorg xorg-cat:lib
 USE_XORG=	x11 xext xorgproto
 CPE_PRODUCT=	libxinerama
 CPE_VENDOR=	x
+CONFIGURE_ARGS=	--enable-malloc0returnsnull
 
 .include <bsd.port.mk>

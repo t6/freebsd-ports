@@ -12,5 +12,6 @@ LICENSE=	MIT
 
 USES=		xorg xorg-cat:lib
 USE_XORG=	x11 xorgproto
+CONFIGURE_ARGS=	--enable-malloc0returnsnull
 
 .include <bsd.port.mk>

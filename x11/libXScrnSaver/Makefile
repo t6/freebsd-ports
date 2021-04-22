@@ -11,5 +11,6 @@ LICENSE_FILE=	${WRKSRC}/COPYING
 
 USES=		xorg xorg-cat:lib
 USE_XORG=	x11 xext xorgproto
+CONFIGURE_ARGS=	--enable-malloc0returnsnull
 
 .include <bsd.port.mk>

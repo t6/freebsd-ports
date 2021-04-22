@@ -16,7 +16,8 @@ USE_XORG=	x11 sm ice xorgproto
 CPE_VENDOR=	x
 CPE_PRODUCT=	libxt
 
-CONFIGURE_ARGS=	--disable-specs
+CONFIGURE_ARGS=	--disable-specs \
+		--enable-malloc0returnsnull
 
 INSTALL_TARGET=	install-strip
 

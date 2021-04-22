@@ -15,10 +15,11 @@ USE_XORG=	xcb xtrans xorgproto
 USE_PERL5=	build
 CPE_VENDOR=	x
 
-CONFIGURE_ARGS+=	--datadir=${PREFIX}/lib \
-			--without-xmlto \
-			--disable-specs
-CONFIGURE_ENV+=	ac_cv_path_PS2PDF=""
+CONFIGURE_ARGS=	--datadir=${PREFIX}/lib \
+		--disable-specs \
+		--enable-malloc0returnsnull \
+		--without-xmlto
+CONFIGURE_ENV=	ac_cv_path_PS2PDF=""
 INSTALL_TARGET=	install-strip
 
 post-patch:

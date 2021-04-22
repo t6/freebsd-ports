@@ -15,5 +15,6 @@ USE_XORG=	x11 xext xorgproto
 INSTALL_TARGET=	install-strip
 CPE_PRODUCT=	libxres
 CPE_VENDOR=	x
+CONFIGURE_ARGS=	--enable-malloc0returnsnull
 
 .include <bsd.port.mk>
