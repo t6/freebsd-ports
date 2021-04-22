@@ -2668,11 +2668,7 @@ CONFIGURE_MAX_CMD_LEN!=	${SYSCTL} -n kern.argmax
 _EXPORTED_VARS+=	CONFIGURE_MAX_CMD_LEN
 GNU_CONFIGURE_PREFIX?=	${PREFIX}
 GNU_CONFIGURE_MANPREFIX?=	${MANPREFIX}
-CONFIGURE_ARGS+=	--prefix=${GNU_CONFIGURE_PREFIX}
-.if !${CONFIGURE_ARGS:M--disable-option-checking} && !${CONFIGURE_ARGS:M--enable-option-checking} && !${CONFIGURE_ARGS:M--enable-option-checking=*}
-CONFIGURE_ARGS+=	--enable-option-checking=fatal
-.endif
-CONFIGURE_ARGS+=	$${_LATE_CONFIGURE_ARGS}
+CONFIGURE_ARGS+=	--prefix=${GNU_CONFIGURE_PREFIX} $${_LATE_CONFIGURE_ARGS}
 .if defined(CROSS_TOOLCHAIN)
 CROSS_HOST=		${ARCH:S/amd64/x86_64/}-unknown-${OPSYS:tl}${OSREL}
 CONFIGURE_ARGS+=	--host=${CROSS_HOST}
@@ -2680,8 +2676,20 @@ CONFIGURE_ARGS+=	--host=${CROSS_HOST}
 CONFIGURE_ENV+=		CONFIG_SITE=${CONFIG_SITE} lt_cv_sys_max_cmd_len=${CONFIGURE_MAX_CMD_LEN}
 HAS_CONFIGURE=		yes
 
+.if !${CONFIGURE_ARGS:M--disable-option-checking} && !${CONFIGURE_ARGS:M--enable-option-checking} && !${CONFIGURE_ARGS:M--enable-option-checking=*}
+# Make option checking warnings an error if possible.  We can only
+# do this if AC_CONFIG_SUBDIRS is not used since configure args are
+# inherited by subpackages and there would be false positives.
+#
+# https://www.gnu.org/savannah-checkouts/gnu/autoconf/manual/autoconf-2.70/html_node/Option-Checking.html
+_SET_LATE_CONFIGURE_ARGS_OPTION_CHECKING= \
+	if ! ${GREP} -q "^ac_subdirs_all=" "${CONFIGURE_CMD}"; then \
+	    _LATE_CONFIGURE_ARGS="$${_LATE_CONFIGURE_ARGS} --enable-option-checking=fatal" ; \
+	fi ;
+.endif
 SET_LATE_CONFIGURE_ARGS= \
      _LATE_CONFIGURE_ARGS="" ; \
+	${_SET_LATE_CONFIGURE_ARGS_OPTION_CHECKING} \
 	if [ -z "${CONFIGURE_ARGS:M--localstatedir=*:Q}" ] && \
 	   ${CONFIGURE_CMD} --help 2>&1 | ${GREP} -- --localstatedir > /dev/null; then \
 	    _LATE_CONFIGURE_ARGS="$${_LATE_CONFIGURE_ARGS} --localstatedir=/var" ; \
