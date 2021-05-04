@@ -1,7 +1,7 @@
 # Created by: Jyun-Yan You <jyyou@cs.nctu.edu.tw>
 
 PORTNAME=	rust
-PORTVERSION?=	1.51.0
+PORTVERSION?=	1.52.0
 PORTREVISION?=	0
 CATEGORIES=	lang
 MASTER_SITES=	https://static.rust-lang.org/dist/:src \
@@ -57,8 +57,8 @@ WASM_VARS=		_RUST_BUILD_WASM=true \
 WASM_VARS_OFF=		_RUST_BUILD_WASM=false
 
 # See WRKSRC/src/stage0.txt for the date and version values.
-BOOTSTRAPS_DATE?=		2021-02-11
-RUST_BOOTSTRAP_VERSION?=	1.50.0
+BOOTSTRAPS_DATE?=		2021-03-25
+RUST_BOOTSTRAP_VERSION?=	1.51.0
 
 BOOTSTRAPS_SUFFIX?=		${BOOTSTRAPS_SUFFIX_${ARCH}}
 BOOTSTRAPS_SUFFIX_powerpc64?=	-${PPC_ABI:tl}
@@ -87,6 +87,7 @@ EXTRA_PATCHES+=	${PATCHDIR}/${ARCH}${BOOTSTRAPS_SUFFIX}
 # but we can build with a newer or older compiler as provided by USE_GCC=yes
 BUILD_DEPENDS+=	gcc9:lang/gcc9
 USE_GCC=	yes
+STRIP_CMD=	${LOCALBASE}/bin/strip # unsupported e_type with base strip
 .endif
 
 # remove when 11.4 is EOL
