@@ -7,6 +7,7 @@ PORTREVISION=	0
 PKGNAMESUFFIX=	-nightly
 DISTNAME=	rustc-nightly-src
 
+IGNORE=		ignore for exp-run
 ONLY_FOR_ARCHS=	amd64
 ONLY_FOR_ARCHS_REASON=	upstream does not provide bootstraps for other architectures
 
